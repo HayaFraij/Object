@@ -7,7 +7,14 @@ Create an object represents you
 have your first name, last name, age, dob(date of birth), favorite food (3),favorite movie (5)
 */
 
-
+var Haya = {
+  firstName: 'Haya',
+  lastName: 'Fraij',
+  age: 24,
+  dob: '15/5/1995',
+  favoriteFood: ['Maqlubah', 'Mashawi', 'sadwich jubnah:p'],
+  favoriteMovie: ['3-ideots', 'h'],
+}
 
 
 
@@ -29,7 +36,25 @@ and return all the first name of the person insides
 
 Ex: firstName(persons) => ['John', 'Alex', 'Alice', 'Thor', 'Soso']
 */
+function firstName(obj){
+  var output = [];
+  var i = 0;
+  for (var key in obj) {
+    output.push(obj[i]['name']['first']);
+    i++;
+  }
+  return output;
+}
 
+function firstName2(obj){
+  var output = [];
+  // var i = 0;
+  for (let i = 0; i < obj.length; i++) {
+    output.push(obj[i]['name']['first']);
+    // i++;
+  }
+  return output;
+}
 
 /*
 3
@@ -41,6 +66,15 @@ and return the average age of those persons
 Ex: averageAge(persons) => 41.2
 */
 
+function averageAge(obj){
+  var sum = 0;
+  var i = 0;
+  for (var key in obj) {
+    sum += persons[i].age;
+    i++
+    }
+    return sum/obj.length;
+  }
 
 /*
 4
@@ -51,7 +85,10 @@ and return the full name of the older person
 
 Ex: olderPerson(persons) => "Soso Al-Amora"
 */
+function olderPerson(obj){
 
+    return obj[obj.length-1]['name']['first'] + ' ' + obj[obj.length-1]['name']['last'];
+}
 
 /*
 5
@@ -63,16 +100,29 @@ and return the full name of the person have longest full name
 Ex: longestName(persons) => "Soso Al-Amora"
 */
 
+// function longestName(obj){
+// var 
+// var 
+// for( var i=0; obj.length>i ; i++)
 
-/*
-6
-Using the varabile persons
-Create a function called longestName
-that accept an object
-and return the full name of the person have longest full name
 
-Ex: longestName(persons) => "Soso Al-Amora"
-*/
+
+// }
+
+function longestName(obj){
+  var length = 0;
+  var output;
+  for (let i = 0; i < obj.length; i++) {
+  var test = obj[i]['name']['first'] + ' ' + obj[i]['name']['last']
+
+    if(test.length > length){
+      length = test.length;
+      output = test
+    }
+  }
+  return output;
+}
+
 
 //////////////////////////////////////////////////////////////////
 
@@ -99,6 +149,21 @@ Ex: repeatWord("My name is alex mercer class name B baba mama hello Hello HELLO"
 }
 */
 
+function repeatWord(str){
+  // debugger
+  str = str.toLowerCase().split(' ');
+  var obj = {};
+  for (let i = 0; i < str.length; i++) {
+    var test = str[i];
+    var count = 0;
+    for (let j = 0; j < str.length; j++) {
+      if(test === str[j]){
+        obj[test] = ++count;
+      }    
+    }
+  }
+  return obj;
+}
 
 
 /*
@@ -112,7 +177,20 @@ and return an object that represents how many times each char repeat
 Ex: repeatChar("mamababatetacedo")
 => { m:2,  a:5, b:2, t2:, e:2, c:1, d:1, o:1}
 */
-
+function repeatChar(str){
+  str = str.toLowerCase().split('');
+  var obj = {};
+  for (let i = 0; i < str.length; i++) {
+    var test = str[i];
+    var count = 0;
+    for (let j = 0; j < str.length; j++) {
+      if(test === str[j]){
+        obj[test] = ++count;
+      }    
+    }
+  }
+  return obj;
+}
 
 /*
 9
@@ -123,8 +201,17 @@ and return an object have the key that inside the array
 Ex: selectFromObject({a: 1, cat: 3}, ['a', 'cat', 'd'])
 =>  {a: 1, cat: 3}
 */
-
-
+function selectFromOject(obj, arr) {
+  var output = {};
+  var i = 0;
+  for (const key in obj) {
+    if (key === arr[i]) {
+      output[key] = obj[key];
+      i++;
+    }
+  }
+  return output
+}
 /*
 10
 Create a function called objectToArray
@@ -134,6 +221,14 @@ and return an array of the keys and values in this object
 Ex: objectToArray({firstName:"Moh",age:24})
 => ["firstName","Moh","age",24]
 */
+function objectToArray(obj){
+  var output = [];
+  for (const key in obj) {
+    output.push(key);
+    output.push(obj[key]);
+    }
+    return output;
+  }
 
 
 /*
@@ -145,7 +240,13 @@ and return an object of the keys and values in this object
 Ex: arrayToObject(["firstName","Moh","age",24])
 => {firstName:"Moh",age:24}
 */
-
+function arrayToObject(arr){
+  var obj = {};
+  for (let i = 0; i < arr.length; i++) {
+    obj[arr[i]] = arr[++i]
+  }
+  return obj;
+}
 
 /*
 12
@@ -157,7 +258,23 @@ and return a new object that have only the values that is a number
 Ex: onlyNumber({firstName:"Moh",age:24,movies:[1,5,"string"]})
 => {age:24}
 */
-
+function onlyNumber(obj){
+  for (const key in obj) {
+    if (typeof(obj[key]) !== 'number') {
+      delete obj[key];
+    }
+  }
+  return obj;
+}
+function onlyNumber2(obj){
+  var output = {};
+  for (const key in obj) {
+    if (typeof(obj[key]) === 'number') {
+      output[key] = obj[key];
+    }
+  }
+  return output;
+}
 
 /*
 13
@@ -169,7 +286,15 @@ and return a new object that have only the values that is a string
 Ex: onlyString({firstName:"Moh",age:24,movies:[1,5,"string"]})
 => {firstName:"Moh"}
 */
-
+function onlyString(obj){
+  var output = {};
+  for (const key in obj) {
+    if (typeof(obj[key]) === 'string') {
+      output[key] = obj[key];
+    }
+  }
+  return output;
+}
 
 /*
 14
@@ -181,7 +306,15 @@ and return a new object that have only the values that is a array
 Ex: onlyArray({firstName:"Moh",age:24,movies:[1,5,"string"]})
 => {movies:[1,5,"string"]}
 */
-
+function onlyArray(obj){
+  var output = {};
+  for (const key in obj) {
+    if (typeof(obj[key]) === 'object') {
+      output[key] = obj[key];
+    }
+  }
+  return output;
+}
 
 /*
 15
