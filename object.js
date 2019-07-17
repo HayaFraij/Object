@@ -150,7 +150,6 @@ Ex: repeatWord("My name is alex mercer class name B baba mama hello Hello HELLO"
 */
 
 function repeatWord(str){
-  // debugger
   str = str.toLowerCase().split(' ');
   var obj = {};
   for (let i = 0; i < str.length; i++) {
@@ -164,8 +163,6 @@ function repeatWord(str){
   }
   return obj;
 }
-
-
 /*
 8
 Create a function called repeatChar
@@ -326,7 +323,14 @@ Ex: keysArray({firstName:"Moh",age:24,movies:[1,5,"string"]})
 => ['firstName', 'age', 'movies']
 
 */
-
+function keysArray(obj){
+  var output = [];
+  for (const key in obj) {
+    output.push(key);
+    }
+    return output;
+  }
+  
 
 /*
 16
@@ -334,11 +338,17 @@ Create a function called valuesArray
 that accept an object
 and return an array have the values inside this object
 
-Ex: keysArray({firstName:"Moh",age:24,movies:[1,5,"string"]})
+Ex: valuesArray({firstName:"Moh",age:24,movies:[1,5,"string"]})
 => ["Moh", 24, [1,5,"string"]]
 
 */
-
+function valuesArray(obj){
+  var output = [];
+  for (const key in obj) {
+    output.push(obj[key]);
+  }
+  return output;
+}
 
 /*
 17
@@ -346,8 +356,10 @@ make this object => {a:1,b:3,c:4}
 to be this object {a:4,c:66}
 **hint: Search on MDN how to remove a key/value from an object
 */
-
-
+var obj = {a:1,b:3,c:4};
+delete obj['b'];
+obj['a'] = 4;
+obj['c'] = 66;
 /*
 18
 Create a function called objectLength
@@ -357,6 +369,13 @@ and return the number of keys inside this object
 Ex: keysArray({a:1,b:2,c:3,d:4})
 => 4
 */
+function objectLength(obj){
+  var count = 0;
+  for (const key in obj) {
+    count ++
+  }
+  return count;
+}
 
 
 /*
@@ -368,7 +387,15 @@ and return a new object that have only the key/values if the value is even
 Ex: evenValue({a:1, b:2, c:3, d:4})
 => {b:2, d:4}
 */
-
+function evenValue(obj){
+  var output = {};
+  for (const key in obj) {
+    if (obj[key] % 2 === 0) {
+      output[key] = obj[key]; 
+    }
+  }
+  return output;
+}
 
 /*
 20
@@ -376,5 +403,16 @@ Create a function called longestKey
 that accept an object
 and return the value inside the longest key
 
-Ex: evenValue({car:1, school:2, monster:3, alexMercer:4})=> 4
+Ex: evenValue({car:1, schoooooooool:2, monster:3, alexMercer:4})=> 4
 */
+function longestKey(obj){
+  var length = 0;
+  var result;
+  for (const key in obj) {
+    if (key.length > length) {
+      length = key.length;
+      result = obj[key];
+    }
+  }
+  return result;
+}
